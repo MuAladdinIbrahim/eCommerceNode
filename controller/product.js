@@ -1,37 +1,57 @@
 const Product = require("../model/product");
 
-let index =  (req, res) => {
+let index = async (req, res) => {
   try {
-    // const products =  Product.find({});
-    products = [{title:"hi",description:"hello",price:15},{title:"hi",description:"hello",price:15}];
-    res.render("../views/product/index", { products});
+    const products = await Product.find();
+    res.render("../views/product/index", {products});
   }
   catch (error) {
     res.status(400).send(error)
   }
 };
 
-let show = (req, res) => {
-  product = {title:"hi",description:"hello",price:15}
+let show = async(req, res) => {
+  product = await Product.findOne({ _id: req.params.id})
   res.render("../views/product/show", { product });
 };
 
-let create = (req, res) => {
+let create = (req,res) => {
   res.render("../views/product/create");
 };
 
-let save = (req, res) => {
-
+let save = async (req, res) => {
+    const product = new Product(req.body)
+    try{
+      await product.save()
+      res.redirect('/products');
+    }
+    catch(error){
+      res.render('../views/error')
+    }
 };
 
-let edit = (req, res) => {
-  product = {title:"hi",description:"hello",price:15}
+let edit = async (req, res) => {
+  product = await Product.findOne({ _id: req.params.id});
+  console.log(product);
   res.render("../views/product/edit", { product });
 };
 
-let update = (req, res) => {};
+let update = async (req, res) => {
+  await Product.findOneAndUpdate({ _id: req.params.id},req.body,(error,product)=>{
+    res.render("../views/product/show", { product });
+  });
+};
 
-let destroy = (req, res) => {};
+let destroy = async (req, res) => {
+  try {
+    await Product.findOneAndDelete({_id: req.params.id})
+    res.redirect('/products');
+  }
+  catch {
+    res.render('../views/error')
+  }
+   
+};
 
 module.exports = {
   index: index,

@@ -1,11 +1,17 @@
 h1.
-    hello
-
+    Products
+a(href="products/create") Add Product
 each e in products
-    //- div
-    //-     p= e.title
-    //-     p= e.description
-    //-     p= e.price
-    p= e
+    div
+        p= e.title
+        p= e.description
+        p= e.price
+        a(href="products/" + e.id) Show
+        br
+        a(href= "products/" + e.id + "/edit") Edit
+        form(action="/products/delete/" + e.id, method="POST")
+            input(type="hidden", name="_method", value="DELETE")
+            button(type="submit") Delete
 else
+    br
     strong no value
