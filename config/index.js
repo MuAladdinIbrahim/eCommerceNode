@@ -18,4 +18,10 @@ module.exports = {
       password: 'developer',
     },
   },
+  facebook: {
+    clientID: '193617505227387',
+    clientSecret: 'de6bec858befdd9146a5ae5d6b2576ec',
+    callbackURL: "http://localhost:3000/auth/facebook/callback"
+
+  }
 };

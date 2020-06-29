@@ -1,4 +1,4 @@
-const Product = require("../model/product");
+const Product = require("../model/mongoose/product");
 
 let index = async (req, res) => {
   try {

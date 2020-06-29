@@ -1,4 +1,4 @@
-const Sequelize = require('sequelize');
+const { Sequelize, Model, DataTypes } = require('sequelize');
 const config = require('../config/index')
 
 const sequelize = new Sequelize(config.mariadb.options);
@@ -13,3 +13,5 @@ sequelize
         process.exit(1);
     })
 config.mariadb.client = sequelize;
+
+module.exports = {Model, DataTypes, sequelize}
