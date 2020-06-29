@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
-
-mongoose.connect('mongodb://127.0.0.1:27017/eCommerce',{
+const config = require('../config/index')
+mongoose.connect(config.mongodb.dsn ,{
     useNewUrlParser:true,
     useCreateIndex:true,
     useFindAndModify:true,
