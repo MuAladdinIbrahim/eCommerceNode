@@ -10,8 +10,5 @@ const Client = sequelize.define("Client", {
 Client.associate = (models) => {
   Client.hasMany(models.Order);
 };
-sequelize.sync({
-  logging: console.log
-});
 
 module.exports = Client;

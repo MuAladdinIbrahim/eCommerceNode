@@ -23,9 +23,8 @@ let create = (req,res) => {
 };
 
 let save = async (req, res) => {
-    const product = new Product(req.body)
-    try{
-      await product.save()
+  try{
+      const product = await (await Product.create(req.body)).save()
       res.redirect('/products');
     }
     catch(error){
