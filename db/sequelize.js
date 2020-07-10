@@ -19,4 +19,8 @@ sequelize.sync({
   alter: true,
 });
 
+sequelize.addHook('afterFind',()=>{
+  console.log('after global find hook')
+})
+
 module.exports = { Model, DataTypes, sequelize };
