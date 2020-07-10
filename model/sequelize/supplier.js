@@ -8,4 +8,9 @@ const Supplier = sequelize.define("Supplier", {
 Supplier.associate = (models) => {
   Supplier.hasMany(models.Product);
 };
+
+sequelize.sync({
+  logging: console.log
+});
+
 module.exports = Supplier;

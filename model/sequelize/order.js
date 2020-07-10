@@ -13,4 +13,7 @@ Order.associate = (models) => {
   });
   Order.belongsToMany(models.Product, { through: "OrderProduct" });
 };
+sequelize.sync({
+  logging: console.log
+});
 module.exports = Order;

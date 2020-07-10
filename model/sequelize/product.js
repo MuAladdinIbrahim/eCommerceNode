@@ -7,19 +7,24 @@ const Product = sequelize.define("Product", {
   createdAt: DataTypes.DATE,
 });
 
-Product.associate = (models) => {
-  Product.belongsTo(models.Supplier, {
-    onDelete: "CASCADE",
-    foreignKey: {
-      allowNull: false,
-    },
-  });
-  Product.belongsTo(models.Category, {
-    onDelete: "SET NULL",
-    foreignKey: {
-      allowNull: false,
-    },
-  });
-  Product.belongsToMany(models.Order, { through: "OrderProduct" });
-};
+// Product.associate = (models) => {
+//   Product.belongsTo(models.Supplier, {
+//     onDelete: "CASCADE",
+//     foreignKey: {
+//       allowNull: false,
+//     },
+//   });
+//   Product.belongsTo(models.Category, {
+//     onDelete: "SET NULL",
+//     foreignKey: {
+//       allowNull: false,
+//     },
+//   });
+//   Product.belongsToMany(models.Order, { through: "OrderProduct" });
+// };
+
+sequelize.sync({
+  logging: console.log
+});
+
 module.exports = Product;

@@ -9,10 +9,9 @@ passport.use(new FacebookStrategy({
     callbackURL: config.facebook.callbackURL
   },
   function(accessToken, refreshToken, profile, done) {
-    console.log("client", Client);
      Client.findOrCreate({where: {facebookId: profile.id} })
       .then(function() {
-          return done(null, client);
+          return done(null, Client);
       })
       .catch( (err) => console.log(err) ) 
     } 

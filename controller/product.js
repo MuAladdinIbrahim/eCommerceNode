@@ -1,8 +1,9 @@
-const Product = require("../model/mongoose/product");
+// const Product = require("../model/mongoose/product");
+const Product = require("../model/sequelize/product");
 
 let index = async (req, res) => {
   try {
-    const products = await Product.find();
+    const products = await Product.findAll();
     res.render("../views/product/index", {products});
   }
   catch (error) {
@@ -11,7 +12,9 @@ let index = async (req, res) => {
 };
 
 let show = async(req, res) => {
-  product = await Product.findOne({ _id: req.params.id})
+  product = await Product.findOne({ 
+    where:{id: req.params.id}  
+  });
   res.render("../views/product/show", { product });
 };
 
@@ -31,20 +34,31 @@ let save = async (req, res) => {
 };
 
 let edit = async (req, res) => {
-  product = await Product.findOne({ _id: req.params.id});
+  product = await Product.findOne({ 
+    where:{id: req.params.id}  
+  });
   console.log(product);
-  res.render("../views/product/edit", { product });
+  res.render("../views/product/edit", {product} );
 };
 
 let update = async (req, res) => {
-  await Product.findOneAndUpdate({ _id: req.params.id},req.body,(error,product)=>{
-    res.render("../views/product/show", { product });
-  });
+  await Product.update(req.body,{
+    returning:true,
+    where:{id:req.params.id}
+  }).then((result,updatedProduct)=>{
+    console.log(result)
+    res.render("../views/product/show",{updatedProduct});
+  }
+  ).catch((error)=>{
+    console.log(error);
+  })
 };
 
 let destroy = async (req, res) => {
   try {
-    await Product.findOneAndDelete({_id: req.params.id})
+    await Product.destroy({
+      where:{id: req.params.id}
+    })
     res.redirect('/products');
   }
   catch {

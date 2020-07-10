@@ -1,7 +1,7 @@
-form(method="POST",action="../"+ product._id)
+form(method="POST",action="../"+ product.id)
     input(type="hidden" name="_method" value="PUT")
     p title
-        input(type="text" name="title", value=product.title)
+        input(type="text" name="name", value=product.name)
     p description 
         input(type="text", name="description", value=product.description)
     p price

@@ -7,4 +7,8 @@ const Category = sequelize.define("Category", {
 Category.associate = (models) => {
   Category.hasMany(models.Product);
 };
+sequelize.sync({
+  logging: console.log
+});
+
 module.exports = Category;
