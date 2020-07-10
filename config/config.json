@@ -1,0 +1,23 @@
+{
+  "development": {
+    "username": "developer",
+    "password": "developer",
+    "database": "eCommerceNode",
+    "host": "127.0.0.1",
+    "dialect": "mariadb"
+  },
+  "test": {
+    "username": "developer",
+    "password": "developer",
+    "database": "eCommerceNode",
+    "host": "127.0.0.1",
+    "dialect": "mariadb"
+  },
+  "production": {
+    "username": "developer",
+    "password": "developer",
+    "database": "eCommerceNode",
+    "host": "127.0.0.1",
+    "dialect": "mariadb"
+  }
+}

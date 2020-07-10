@@ -5,8 +5,10 @@ const Product = sequelize.define("Product", {
    validate: {
      notEmpty:true,
      isAlphanumeric:true,
-     min:6,
-     max:20,
+     len: {
+       args: [5,20],
+       msg: 'length must be between 5 and 20'
+     }
    }
   },
   price: {
